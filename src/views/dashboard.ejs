@@ -2,6 +2,8 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+
         <title>login</title>
         <link href="/css/style.css" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -9,14 +11,52 @@
         
     </head>
     <body>
-      
-        <h1 class="mt-4">Dashboard</h1>
-        <p class="lead mb-3">Welcome <%= name %></p>
-        <a href="/users/logout" class="btn btn-secondary">Logout</a>
-        <% savedAnime.forEach(anime => {%>
-            <p><%= anime.title %></p>
-            <img src="<%= anime.src %>" alt="anime">   
-        <%})%>
+        <nav id="nav-2" class="navbar navbar-expand-lg">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon nav-2"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+          <a class="navbar-brand" href="#">AniLab</a>
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+           
+            <li class="nav-item">
+                <a href="/users/logout" class="btn btn-secondary">Logout</a>
+            </li>
+          </ul>
+         
+        </div>
+      </nav>
+          <section>
+            <h1 class=" dash"><%= name %>, Your WatchList! </p></h1>
+            
+            <div class="grid-container">
+                <% savedAnime.forEach(anime => {%>
+                    <div class="card-container">
+                      <div class="cellphone-container savedAnime">    
+                          <div class="anime">       
+                            <img src="<%=anime.src%>" class="anime-img" />
+                            <div class="text-anime-cont">
+                              <div class="mrgridd">
+                                <div class="columnumn1">
+                                  <h1 style="color: rgb(243, 243, 243); font-weight: 300; text-align: center;"><%=anime.title%></h1>
+                                  <div style="display: flex; justify-content: center;"><button type="submit" class="del-btn btn-primary btn-block">Remove</button></div>
+
+                                </div>
+                              </div>
+                              
+                              </div>
+                            </div>
+                          </div>
+                      </div>                     
+                  <%})%>
+                
+            </div>
+                
+          </section>
+        
         
         
 

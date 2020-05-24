@@ -93,7 +93,7 @@ li {
 
  .nav-link { 
     color: rgb(243, 243, 243);
-    font-size: 84%;
+    font-size: 100%;
  }
  .nav-link:hover { color: #f32227; }
 
@@ -165,7 +165,7 @@ li {
     background-color: transparent;
     background: transparent;
     border-color: transparent;
-    position: absolute;
+    position: absolute !important;
     width: 100%;
     margin-left: 0px !important;
     margin-right: 0px !important;
@@ -205,8 +205,6 @@ li {
       margin-left: 0 !important;
       background-color: #f32227;
       padding: 0 !important;
-      margin-top: -40px !important;
-      position: fixed;
       width: 100%;
       z-index: 9999;
   }
@@ -844,4 +842,62 @@ ANIME INFORMATION PAGE
         width: 100%;
     }
 
+}
+
+
+/* 
+--------------------------------------------------------------------------------------------------------- 
+DASHBOARD PAGE
+--------------------------------------------------------------------------------------------------------- 
+*/
+
+.dash {
+    font-size: 300%;
+    text-align: center;
+    padding-top: 15px;
+}
+
+.savedAnime {
+    height: 520px;
+}
+
+.del-btn {
+    background-color: #f32227 !important;
+    color: #ffffff;
+    font-size: 100%;
+    padding: 6px 28px !important;
+    border-radius: 200px;
+    border-color: #f32227 !important;
+    width: 200px !important;
+    margin-top: 10px;
+}
+
+.del-btn:hover {
+    background-color: #c52e30 !important;
+    border-color: #c52e30 !important;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 600px) { 
+    .dash {
+        padding-top: 80px;
+        font-size: 250%;
+        margin-bottom: -50px;
+    }
+    
+    .savedAnime {
+        height: 485px;
+    }
+    .columnumn1 h1 {
+        font-size: 180%;
+    }
+    .del-btn {
+        font-size: 75%;
+        width: 150px !important;
+        margin-top: 5px;
+    }
+    .nav-2 {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(251, 251, 251, 0.979)' stroke-width='3' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E") !important;
+      }
+    
 }
