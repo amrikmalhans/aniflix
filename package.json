@@ -22,7 +22,6 @@
     "ejs": "^3.0.2",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
-    "google-news-rss": "^0.4.1",
     "install": "^0.13.0",
     "jikan-node": "^1.2.0",
     "mongodb": "^3.5.7",
