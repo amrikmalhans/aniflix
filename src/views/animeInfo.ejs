@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <title>ANIME DETAILS</title>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link href="/css/style.css" rel="stylesheet" type="text/css">
+
+    </head>
+    <body>
+      <% animeData.forEach(element => {%>
+        <%
+        
+         
+        let title = element.attributes.canonicalTitle
+        let description = element.attributes.synopsis;
+        let url = element.attributes.posterImage.original;
+        let coverUrl = element.attributes.coverImage === null ? element.attributes.posterImage.original :  element.attributes.coverImage.original
+        let count = element.attributes.favoritesCount;
+        let rating = element.attributes.averageRating;
+        let startDate = element.attributes.startDate;
+        let endDate = element.attributes.endDate;
+        let status = element.attributes.status;
+        %>
+      <header style="
+          background-image: linear-gradient(to right bottom, 
+        rgba(0, 0, 0, 0.2),
+        rgba(0, 0, 0, 0.2)), url(<%=coverUrl%>);" 
+      class="anime-cover">
+        <nav class="navbar navbar-expand-lg">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+              <a class="navbar-brand" href="#">ANIMAX</a>
+              <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Disabled</a>
+                </li>
+              </ul>
+             
+            </div>
+          </nav>
+    </header>
+        
+        <section class="animeInfo-section">
+          <div class="meat-section">
+              <div class="meat-container">
+                  <div class="poster">
+                    <img class="cover-image" width="320" height="500" src="<%=url%>" alt="">
+                  </div>
+
+                  <div style="padding: 30px;" class="detail">
+                    <h1 class="anime-title"><%=title%></h1>
+                    <div class="info-grid"> 
+                       
+                      <p class="count">Favorite counts: <span><%=count%></span></p>
+                      <p class="ratings">Average ratings: <span><%=rating%></span></p>
+                      <p class="start-date">Start date: <span><%=startDate%></span></p>
+                      <p class="end-date">End date: <span><%=endDate%></span></p>
+                      <p class="status">Status: <span><%=status%></span></p>
+                      <a class="add-list-btn" onclick="sendData()" href="#">Add to list</a>
+                    </div>
+                    
+                    <p class="synopsis">Synopsis</p>
+                    <p class="description lead"><%=description%></p>
+                  </div>
+                </div>
+            <%})%>
+        </div>
+
+        <div class="review-section">
+          <h1>Reviews</h1>
+          <div class="review-div">
+            <% reviewsData.forEach(reviews => {%>
+              <%
+              let likes = reviews.attributes.likesCount
+              let rating = reviews.attributes.rating
+              let spoiler = reviews.attributes.spoiler === false ? 'no spoiler' : 'spoiler alert'
+              
+               let review = reviews.attributes.contentFormatted.length > 100 ? reviews.attributes.contentFormatted.replace(/<\/?[^>]+>/gi, '').substring(0,100)+'...𝙧𝙚𝙖𝙙 𝙢𝙤𝙧𝙚' : reviews.attributes.content.replace(/<\/?[^>]+>/gi, '')
+              %>
+              <div class="reviews">
+                <div class="review-card">
+                  <div class="rating">
+                    <p class="rate"><%=rating%></p>
+                    <p class="spoiler-tag"><%=spoiler%></p>
+                  </div>
+                    <p class="lead review"><%=review%></p>
+
+                   
+                </div>
+                
+              </div>
+            <%})%>
+          </div>
+        </div>
+
+        <div class="eps-section">
+          <h1>Episodes</h1>
+          <div class="eps-div">
+            <% epsData.forEach(eps => {%>
+              <%
+              let thumb =  eps.attributes.thumbnail === null ? 'not available' : eps.attributes.thumbnail.original
+              let epsTitle =  eps.attributes.canonicalTitle === null ? 'Title N/A' : eps.attributes.canonicalTitle;
+              
+              %>
+              <a target="_blank" href=""><div style="background-image: url(<%=thumb%>);" class="eps">
+                <div><%=epsTitle%></div>
+              </div></a>
+            <%})%>
+          </div>
+        </div>
+        
+
+        </section>
+
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        
+        <script src="/js/index.js"></script>
+    </body>
+</html>

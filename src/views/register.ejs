@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+        <title>login</title>
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <link href="/css/style.css" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        
+    </head>
+    <body>
+      <nav id="nav-2" class="navbar navbar-expand-lg">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon nav-2"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+          <a class="navbar-brand" href="#">AniLab</a>
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Disabled</a>
+            </li>
+          </ul>
+         
+        </div>
+      </nav>
+        <div class="row mt-5">
+          
+            <div class="col-md-6 m-auto">
+              <div class="card card-body">
+                <h1 class="text-center mb-3">
+                  <i class="fas fa-user-plus"></i> Register
+                </h1>
+                <% if(typeof errors != 'undefined') { %>
+                  <% errors.forEach(error => { %>
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                     <%= error.msg %>
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                 <%  }); %>
+              <% } %>
+              <% if(success_msg != ''){ %>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                  <%= success_msg %>
+                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                   </button>
+                 </div>
+                <% } %>
+                <% if(error_msg != ''){ %>
+                  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <%= error_msg %>
+                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                       <span aria-hidden="true">&times;</span>
+                     </button>
+                   </div>
+                  <% } %>
+                  <% if(error != ''){ %>
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                      <%= error %>
+                       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                       </button>
+                     </div>
+                    <% } %>
+                <form action="/users/register" method="POST">
+                  <div class="form-group">
+                    <label for="name">Name</label>
+                    <input
+                      type="name"
+                      id="name"
+                      name="name"
+                      class="form-control"
+                      placeholder="Enter Name"
+                      value="<%= typeof name != 'undefined' ? name : '' %>"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="email">Email</label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      class="form-control"
+                      placeholder="Enter Email"
+                      value="<%= typeof email != 'undefined' ? email : '' %>"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="password">Password</label>
+                    <input
+                      type="password"
+                      id="password"
+                      name="password"
+                      class="form-control"
+                      placeholder="Create Password"
+                      value="<%= typeof password != 'undefined' ? password : '' %>"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="password2">Confirm Password</label>
+                    <input
+                      type="password"
+                      id="password2"
+                      name="password2"
+                      class="form-control"
+                      placeholder="Confirm Password"
+                      value="<%= typeof password2 != 'undefined' ? password2 : '' %>"
+                    />
+                  </div>
+                  <div style="display: flex; justify-content: center;">
+                    <button type="submit" class="login-btn btn-primary btn-block">
+                      Register
+                    </button>
+                </div>
+                </form>
+                <p class="lead mt-4">Have An Account? <a style="font-weight: 400; color: #f32227;" href="/users/login">Login</a></p>
+              </div>
+            </div>
+          </div>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </body>
+</html>

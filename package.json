@@ -1,0 +1,40 @@
+{
+  "name": "ytapp",
+  "version": "1.0.0",
+  "description": "youtube music app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "author": "amrik malhans",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "circular-json": "^0.5.9",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.5",
+    "cookies": "^0.8.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.0.2",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "google-news-rss": "^0.4.1",
+    "install": "^0.13.0",
+    "jikan-node": "^1.2.0",
+    "mongodb": "^3.5.7",
+    "mongoose": "^5.9.11",
+    "morgan": "^1.10.0",
+    "newsapi": "^2.4.0",
+    "node-sessionstorage": "^1.0.0",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "sessionstorage": "^0.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  }
+}
