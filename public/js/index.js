@@ -24,3 +24,24 @@ const sendData = () => {
     }
 
 
+    const deleteData = () => {
+        const xhr = new XMLHttpRequest();
+    
+        xhr.onload = () => {
+            const serverResponse = document.getElementsByClassName('anime-title');
+            serverResponse.innerHTML = this.resposneText;
+        };
+    
+        xhr.open("DELETE", "/list");
+        xhr.setRequestHeader("Content-type", "application/json");
+        const title = document.getElementsByClassName('saved-anime-title')[0].innerText;
+        const src = document.getElementsByClassName('anime-img')[0].src;
+        
+        const data = {title: title, src: src};
+        const json = JSON.stringify(data);
+        
+        xhr.send(json);
+
+        window.location.reload();
+        }
+    

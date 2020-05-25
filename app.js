@@ -19,6 +19,7 @@ const session = require('express-session');
 const passport = require('passport');
 const objectId = require('mongodb').ObjectID; 
 const User = require('./src/models/userSchema');
+const { ensureAuthenticated } = require('./src/config/auth')
 
 const PORT = process.env.PORT || 5000;
 
@@ -74,12 +75,28 @@ app.use('/', dashboardRouter);
     console.dir("Connection Successful!");
 });
 
+
 app.post('/list', (req, res) => {
   const data = req.body;
   const animeId = data.title;
   const animeSrc = data.src;
   const id = req.user._id;
   User.findOneAndUpdate({_id: objectId(id)}, {$push: {animeId: {
+    title: animeId,
+    src: animeSrc
+  }}}, {upsert: true}, (err, result) => {
+    console.log(result);
+
+  })
+});
+
+
+app.delete('/list', (req, res) => {
+  const data = req.body;
+  const animeId = data.title;
+  const animeSrc = data.src;
+  const id = req.user._id;
+  User.findOneAndUpdate({_id: objectId(id)}, {$pull: {animeId: {
     title: animeId,
     src: animeSrc
   }}}, {upsert: true}, (err, result) => {
