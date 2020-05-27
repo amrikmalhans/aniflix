@@ -635,6 +635,17 @@ ANIME INFORMATION PAGE
      margin-top: auto;
 }
 
+.success-btn {
+    background-color: #22f333;
+    width: 160px;
+    padding: 5px;
+    border-radius: 200px;
+    text-align: center;
+    color: #fff;
+    text-decoration: none;
+    margin-top: auto;
+}
+
 @media only screen and (max-width: 600px) {
 
 .meat-container{

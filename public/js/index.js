@@ -10,7 +10,7 @@ const checkAuth = () => {
         if (xhr.readyState == XMLHttpRequest.DONE) {
             alert('please Login to add to WatchList!')
             window.location.href = "/users/login"
-        }
+        } 
     }
     xhr.open("GET", "/list");
     xhr.send(null);
@@ -20,8 +20,9 @@ const sendData = () => {
     const xhr = new XMLHttpRequest();
 
     xhr.onload = () => {
-        const serverResponse = document.getElementsByClassName('anime-title');
-        serverResponse.innerHTML = this.resposneText;
+        const btn = document.getElementsByClassName('add-list-btn')[0];
+        btn.classList.add('success-btn')
+        btn.innerHTML = 'Added!'
     };
 
     xhr.open("POST", "/list");
@@ -33,6 +34,9 @@ const sendData = () => {
     const json = JSON.stringify(data);
     
     xhr.send(json)
+
+   
+
     }
 
 
