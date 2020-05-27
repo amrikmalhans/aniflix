@@ -76,7 +76,12 @@ app.use('/', dashboardRouter);
 });
 
 
-app.post('/list', (req, res) => {
+app.get('/list', ensureAuthenticated, (req, res) => {
+  
+})
+
+app.post('/list', (req, res, next) => {
+  
   const data = req.body;
   const animeId = data.title;
   const animeSrc = data.src;
@@ -88,6 +93,7 @@ app.post('/list', (req, res) => {
     console.log(result);
 
   })
+  next();
 });
 
 

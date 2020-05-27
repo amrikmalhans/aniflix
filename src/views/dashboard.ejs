@@ -42,7 +42,7 @@
                               <div class="mrgridd">
                                 <div class="columnumn1">
                                   <h1 class="saved-anime-title" style="color: rgb(243, 243, 243); font-weight: 300; text-align: center;"><%=anime.title%></h1>
-                                  <div style="display: flex; justify-content: center;"><button onclick="deleteData()" type="submit" class="del-btn btn-primary btn-block">Remove</button></div>
+                                  <div style="display: flex; justify-content: center;"><button onclick="deleteData('<%= anime.title %>', '<%= anime.src %>')" type="submit" class="del-btn btn-primary btn-block">Remove</button></div>
 
                                 </div>
                               </div>

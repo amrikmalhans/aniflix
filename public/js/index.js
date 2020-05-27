@@ -4,6 +4,18 @@ const animeSelected = id => {
     window.location = '/anime_detail';
 };
 
+const checkAuth = () => {
+    const xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = () => {
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            alert('please Login to add to WatchList!')
+            window.location.href = "/users/login"
+        }
+    }
+    xhr.open("GET", "/list");
+    xhr.send(null);
+}
+
 const sendData = () => {
     const xhr = new XMLHttpRequest();
 
@@ -24,24 +36,18 @@ const sendData = () => {
     }
 
 
-    const deleteData = () => {
+    const deleteData = (title, src) => {
         const xhr = new XMLHttpRequest();
-    
-        xhr.onload = () => {
-            const serverResponse = document.getElementsByClassName('anime-title');
-            serverResponse.innerHTML = this.resposneText;
-        };
     
         xhr.open("DELETE", "/list");
         xhr.setRequestHeader("Content-type", "application/json");
-        const title = document.getElementsByClassName('saved-anime-title')[0].innerText;
-        const src = document.getElementsByClassName('anime-img')[0].src;
         
         const data = {title: title, src: src};
-        const json = JSON.stringify(data);
-        
+        const json = JSON.stringify(data);        
         xhr.send(json);
 
-        window.location.reload();
+        setTimeout(function(){    
+            window.location.reload();    
+        },100);
         }
     
