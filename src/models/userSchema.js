@@ -15,11 +15,7 @@ const UserSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
-    animeId: [{
-        title:  String,
-        src:  String,
-        
-    }],
+    animeId: [],
     date: {
         type: Date,
         default: Date.now()

@@ -16,7 +16,20 @@ const checkAuth = () => {
     xhr.send(null);
 }
 
-const sendData = () => {
+const once = (fn, context) => { 
+	let result;
+
+	return function() { 
+		if(fn) {
+			result = fn.apply(context || this, arguments);
+			fn = null;
+		}
+
+		return result;
+	};
+}
+
+const sendData = once(() => {
     const xhr = new XMLHttpRequest();
 
     xhr.onload = () => {
@@ -34,10 +47,7 @@ const sendData = () => {
     const json = JSON.stringify(data);
     
     xhr.send(json)
-
-   
-
-    }
+});
 
 
     const deleteData = (title, src) => {

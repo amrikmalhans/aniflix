@@ -86,10 +86,7 @@ app.post('/list', (req, res, next) => {
   const animeId = data.title;
   const animeSrc = data.src;
   const id = req.user._id;
-  User.findOneAndUpdate({_id: objectId(id)}, {$addToSet: {animeId: {
-    title: animeId,
-    src: animeSrc
-  }}}, {upsert: true}, (err, result) => {
+  User.findOneAndUpdate({_id: objectId(id)}, {$addToSet: {animeId: data}}, {upsert: true}, (err, result) => {
     console.log(result);
   })
   next();
