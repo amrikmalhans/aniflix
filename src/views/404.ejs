@@ -17,7 +17,7 @@
           <span class="navbar-toggler-icon nav-2"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-          <a class="navbar-brand" href="#">AniFlix</a>
+          <a class="navbar-brand" href="#">AniLab</a>
           <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
             <li class="nav-item">
               <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
@@ -28,58 +28,14 @@
             <li class="nav-item">
               <a class="nav-link" href="/users/register">Register</a>
             </li>
-
-            <li class="nav-item">
-              <a class="nav-link" href="/dashboard">WatchList</a>
-            </li>
           </ul>
          
         </div>
       </nav>
-        <div>
 
-        </div>
-    
-        <section class="anime-section grid-container">
-         
-                <% data.forEach(element => {%>
-                  <% 
-                  let title = element.attributes.canonicalTitle
-                  let id = element.id;
-                  %>
-                  <div class="card-container">
-                    <div class="cellphone-container">    
-                        <div class="anime">       
-                          <img src="<%=element.attributes.posterImage.original%>" class="anime-img" />
-                          <div class="text-anime-cont">
-                            <div class="mrgridd">
-                              <div class="columnumn1">
-                                <h1><%=title%></h1>
-                                <ul class="anime-gen">
-                                  <li>Episodes - <%=element.attributes.episodeCount%> /</li>
-                                  <li>Age Rating - <%=element.attributes.ageRatingGuide%>  </li>
-                                </ul>
-                              </div>
-                            </div>
-                            <div class="mrgridd actionrow">
-                              <a target="_blank" href="https://www.youtube.com/watch?v=<%= element.attributes.youtubeVideoId %> "><div class="column2"><div class="watch-btn"><h3>WATCH TRAILER</h3></div></a>
-                              </div>
-                              <div class="column2"><div onclick="animeSelected('<%= id %>')" class="watch-btn-2"><h3>MORE DETAILS</h3></div>
-                            </div>
-                            </div>
-                          </div>
-                        </div>
-                    </div>
-                  </div>                      
-                <%})%>
-                
-            </div>
-            
-            
-        
-        </section>
-
-
+      <div>
+          <h2 style="color: black; font-size: 50px; text-align: center; padding-top: 30px;">Sorry no results found :(</h2>
+      </div>
         
         <script src="/js/index.js"></script>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

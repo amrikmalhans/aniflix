@@ -9,9 +9,14 @@ routes.post('/', function(req, res) {
           let name = req.body.name;
           let anime =  await axios.get(`https://kitsu.io/api/edge/anime?filter[text]=${name}`);
           let data = anime.data.data;
-          res.render('anime', {
-              data,
-          });
+          if (data === []) {
+            res.render('404');
+          } else {
+            res.render('anime', {
+                data,
+            });
+          }
+         
           
       } catch (err) {
           console.log(err);

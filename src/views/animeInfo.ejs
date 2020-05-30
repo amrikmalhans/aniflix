@@ -11,17 +11,16 @@
     <body>
       <% animeData.forEach(element => {%>
         <%
-        
          
-        let title = element.attributes.canonicalTitle
-        let description = element.attributes.synopsis;
-        let url = element.attributes.posterImage.original;
-        let coverUrl = element.attributes.coverImage === null ? element.attributes.posterImage.original :  element.attributes.coverImage.original
-        let count = element.attributes.favoritesCount;
-        let rating = element.attributes.averageRating;
-        let startDate = element.attributes.startDate;
-        let endDate = element.attributes.endDate;
-        let status = element.attributes.status;
+        const title = element.attributes.canonicalTitle
+        const description = element.attributes.synopsis;
+        const url = element.attributes.posterImage.original;
+        const coverUrl = element.attributes.coverImage === null ? element.attributes.posterImage.original :  element.attributes.coverImage.original
+        const count = element.attributes.favoritesCount;
+        const rating = element.attributes.averageRating;
+        const startDate = element.attributes.startDate;
+        const endDate = element.attributes.endDate;
+        const status = element.attributes.status;
         %>
       <header style="
           background-image: linear-gradient(to right bottom, 
@@ -33,16 +32,19 @@
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-              <a class="navbar-brand" href="#">ANIMAX</a>
+              <a class="navbar-brand" href="#">AniFlix</a>
               <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                  <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Link</a>
+                  <a class="nav-link" href="/users/login">Login</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Disabled</a>
+                  <a class="nav-link" href="/users/register">Register</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/dashboard">WatchList</a>
                 </li>
               </ul>
              
@@ -66,7 +68,19 @@
                       <p class="start-date">Start date: <span><%=startDate%></span></p>
                       <p class="end-date">End date: <span><%=endDate%></span></p>
                       <p class="status">Status: <span><%=status%></span></p>
-                      <button class="add-list-btn" onclick=" checkAuth(); sendData(); " >Add to list</button>
+                       
+                      <%if (myVar == ' to list') {%>
+                          <button class="add-list-btn" onclick="sendData();" >Add<%= myVar%></button> 
+                      <%}%>
+
+                      <%if (myVar == 'ed') {%>
+                        <button class="add-list-btn success-btn">Add<%= myVar%></button> 
+                    <%}%>
+                       
+                    
+                    <%if (myVar == 'add to list') {%>
+                      <button class="add-list-btn" onclick="redirect()">Add to list</button> 
+                  <%}%>
                     </div>
                     
                     <p class="synopsis">Synopsis</p>
@@ -81,23 +95,43 @@
           <div class="review-div">
             <% reviewsData.forEach(reviews => {%>
               <%
-              let likes = reviews.attributes.likesCount
-              let rating = reviews.attributes.rating
-              let spoiler = reviews.attributes.spoiler === false ? 'no spoiler' : 'spoiler alert'
+              const id = reviews.id;
+              const likes = reviews.attributes.likesCount
+              const rating = reviews.attributes.rating
+              const spoiler = reviews.attributes.spoiler === false ? 'no spoiler' : 'spoiler alert'
               
-               let review = reviews.attributes.contentFormatted.length > 100 ? reviews.attributes.contentFormatted.replace(/<\/?[^>]+>/gi, '').substring(0,100)+'...𝙧𝙚𝙖𝙙 𝙢𝙤𝙧𝙚' : reviews.attributes.content.replace(/<\/?[^>]+>/gi, '')
+               const shortReview = reviews.attributes.contentFormatted.length > 100 ? reviews.attributes.contentFormatted.replace(/<\/?[^>]+>/gi, '').substring(0,100)+'...𝙧𝙚𝙖𝙙 𝙢𝙤𝙧𝙚' : reviews.attributes.content.replace(/<\/?[^>]+>/gi, '')
+               const review = reviews.attributes.contentFormatted.replace(/<\/?[^>]+>/gi, '');
               %>
-              <div class="reviews">
-                <div class="review-card">
+              <div x class="reviews">
+                <div  data-toggle="modal" data-target="#myModal<%=id%>"  class="review-card">
                   <div class="rating">
                     <p class="rate"><%=rating%></p>
                     <p class="spoiler-tag"><%=spoiler%></p>
                   </div>
-                    <p class="lead review"><%=review%></p>
-
-                   
+                    <p class="lead review"><%=shortReview%></p>
                 </div>
-                
+                <!-- Modal -->
+              <div id="myModal<%=id%>" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                  <!-- Modal content-->
+                  <div style="width: 100%; " class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title">Review</h4>
+                    </div>
+                    <div class="modal-body">
+                      <p style="font-size: 17px;" class="lead"><%=review%></p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
               </div>
             <%})%>
           </div>
@@ -108,11 +142,19 @@
           <div class="eps-div">
             <% epsData.forEach(eps => {%>
               <%
-              let thumb =  eps.attributes.thumbnail === null ? 'not available' : eps.attributes.thumbnail.original
-              let epsTitle =  eps.attributes.canonicalTitle === null ? 'Title N/A' : eps.attributes.canonicalTitle;
               
+              
+              const thumb =  eps.attributes.thumbnail === null ? 'not available' : eps.attributes.thumbnail.original
+              const epsTitle =  eps.attributes.canonicalTitle === null ? 'Title N/A' : eps.attributes.canonicalTitle;
+
+              
+              if (Array.isArray(streamLinks) && streamLinks.length) {
+                  var stream = streamLinks[0].attributes.url
+              } else {
+                  var stream = '';
+              }
               %>
-              <a target="_blank" href=""><div style="background-image: url(<%=thumb%>);" class="eps">
+              <a target="_blank" href="<%= stream %>" ><div style="background-image: url(<%=thumb%>);" class="eps">
                 <div><%=epsTitle%></div>
               </div></a>
             <%})%>
@@ -130,3 +172,5 @@
         <script src="/js/index.js"></script>
     </body>
 </html>
+
+

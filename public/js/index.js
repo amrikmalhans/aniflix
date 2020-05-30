@@ -4,17 +4,7 @@ const animeSelected = id => {
     window.location = '/anime_detail';
 };
 
-const checkAuth = () => {
-    const xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = () => {
-        if (xhr.readyState == XMLHttpRequest.DONE) {
-            alert('please Login to add to WatchList!')
-            window.location.href = "/users/login"
-        } 
-    }
-    xhr.open("GET", "/list");
-    xhr.send(null);
-}
+
 
 const once = (fn, context) => { 
 	let result;
@@ -29,14 +19,16 @@ const once = (fn, context) => {
 	};
 }
 
+
+
 const sendData = once(() => {
     const xhr = new XMLHttpRequest();
 
     xhr.onload = () => {
         const btn = document.getElementsByClassName('add-list-btn')[0];
         btn.classList.add('success-btn')
-        btn.innerHTML = 'Added!'
-    };
+        btn.innerHTML = 'Added'
+    }
 
     xhr.open("POST", "/list");
     xhr.setRequestHeader("Content-type", "application/json");
@@ -65,3 +57,9 @@ const sendData = once(() => {
         },100);
         }
     
+
+
+const redirect = () => {
+    alert('login to add to list!');
+    window.location.href = '/users/login'
+}

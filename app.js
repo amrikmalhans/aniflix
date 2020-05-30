@@ -76,9 +76,14 @@ app.use('/', dashboardRouter);
 });
 
 
-app.get('/list', ensureAuthenticated, (req, res) => {
-  
+app.get('/list', (req, res, next) => {
+  if (req.user) {
+   res.sendStatus(200)
+  } else {
+    res.sendStatus(404)
+  }
 })
+
 
 app.post('/list', (req, res, next) => {
   
